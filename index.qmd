@@ -10,5 +10,3 @@ To learn more about Quarto websites visit
 ```{r}
 1 + 1
 ```
-
-little change
