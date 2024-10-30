@@ -2,8 +2,7 @@
 title: "About"
 ---
 
-About this site
+All transcriptions are taken from:  
+Jones, Daniel. 2011. *Cambridge English Pronouncing Dictionary*. (Ed.) Peter Roach. 18th ed. Cambridge: Cambridge University Press.
 
-```{r}
-1 + 1
-```
+For the source code, visit the [GitHub](https://github.com/VBuskin/phondb) repository.

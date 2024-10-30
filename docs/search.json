@@ -4,13 +4,13 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
+    "text": "All transcriptions are taken from:\nJones, Daniel. 2011. Cambridge English Pronouncing Dictionary. (Ed.) Peter Roach. 18th ed. Cambridge: Cambridge University Press.\nFor the source code, visit the GitHub repository."
   },
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "phondb",
+    "title": "Phonological Dictionary",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2"
+    "text": "# Define the dictionary data in R\ndictionary &lt;- data.frame(\n  word = c(\"example\", \"phonology\", \"transcription\"),\n  ipa = c(\"/ɪɡˈzæmpəl/\", \"/fəˈnɑlədʒi/\", \"/trænˈskrɪpʃən/\"),\n  notes = c(\"Stress on second syllable\", \"Greek origin\", \"\")\n)\n\n# Convert dictionary to JSON\ndictionary_json &lt;- jsonlite::toJSON(dictionary, dataframe = \"rows\", auto_unbox = TRUE)\ndictionary_json\n\n[{\"word\":\"example\",\"ipa\":\"/ɪɡˈzæmpəl/\",\"notes\":\"Stress on second syllable\"},{\"word\":\"phonology\",\"ipa\":\"/fəˈnɑlədʒi/\",\"notes\":\"Greek origin\"},{\"word\":\"transcription\",\"ipa\":\"/trænˈskrɪpʃən/\",\"notes\":\"\"}] \n\n\n\n  \n  \n  \n    \n\n\n\nWord\nIPA\nNotes"
   }
 ]

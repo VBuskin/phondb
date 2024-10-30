@@ -1,12 +1,195 @@
 ---
-title: "phondb"
+title: "Phonological Database (Jones 2011)"
+format: 
+  html:
+    page-layout: full
+    css: styles.css
+    include-in-header:
+      text: |
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
 ---
 
-This is a Quarto website.
+```{=html}
+<div class="dictionary-container">
+  <input type="text" id="searchInput" class="search-box" placeholder="Search for a word...">
+  <div id="searchResults"></div>
+  <div id="fullDictionary"></div>
+</div>
 
-To learn more about Quarto websites visit
-<https://quarto.org/docs/websites>.
+<script>
+// Dictionary data
+const dictionary = [
+  { word: "kit", rp: "/kɪt/", ga: "/kɪt/", notes: "" },
+  { word: "dress", rp: "/dres/", ga: "/dres/", notes: "" },
+  { word: "trap", rp: "/træp/", ga: "/træp/", notes: "" },
+  { word: "lot", rp: "/lɒt/", ga: "/lɑːt/", notes: "" },
+  { word: "strut", rp: "/strʌt/", ga: "/strʌt/", notes: "" },
+  { word: "foot", rp: "/fʊt/", ga: "/fʊt/", notes: "" },
+  { word: "fleece", rp: "/fliːs/", ga: "/fliːs/", notes: "" },
+  { word: "face", rp: "/feɪs/", ga: "/feɪs/", notes: "" },
+  
+  { word: "price", rp: "/praɪs/", ga: "/praɪs/", notes: "" },
+  { word: "choice", rp: "/tʃɔɪs/", ga: "/tʃɔɪs/", notes: "" },
+  { word: "goose", rp: "/ɡuːs/", ga: "/ɡuːs/", notes: "" },
+  { word: "goat", rp: "/ɡəʊt/", ga: "/ɡoʊt/", notes: "" },
+  { word: "mouth", rp: "/maʊθ/", ga: "/maʊθ/", notes: "" },
+  { word: "near", rp: "/nɪə/", ga: "/nɪr/", notes: "" },
+  { word: "square", rp: "/skweə/", ga: "/skwer/", notes: "" },
+  { word: "start", rp: "/stɑːt/", ga: "/stɑːrt/", notes: "" },
+  { word: "thought", rp: "/θɔːt/", ga: "/θɔːt/, /θɑːt/", notes: "" },
+  { word: "cure", rp: "/kjʊə/, /kjɔː/", ga: "/kjʊr/", notes: "" },
+  { word: "nurse", rp: "/nɜːs/", ga: "/nɝːs/", notes: "" },
+  
+  { word: "cease", rp: "/siːs/", ga: "/siːs/", notes: "" },
+  { word: "seas", rp: "/siːz/", ga: "/siːz/", notes: "" },
+  { word: "sees", rp: "/siːz/", ga: "/siːz/", notes: "" },
+  { word: "seize", rp: "/siːz/", ga: "/siːz/", notes: "" },
+  { word: "size", rp: "/saɪz/", ga: "/saɪz/", notes: "" },
+  { word: "says", rp: "/sez/", ga: "/sez/", notes: "" },
+  { word: "sighs", rp: "/saɪz/", ga: "/saɪz/", notes: "" },
+  { word: "ways", rp: "/weɪz/", ga: "/weɪz/", notes: "" },
+  { word: "vice", rp: "/vaɪs/", ga: "/vaɪs/", notes: "" },
+  { word: "wise", rp: "/waɪz/", ga: "/waɪz/", notes: "" },
+  { word: "voice", rp: "/vɔɪs/", ga: "/vɔɪs/", notes: "" }
+  ,
+  { word: "love", rp: "/lʌv/", ga: "/lʌv/", notes: "" },
+  { word: "low", rp: "/ləʊ/", ga: "/loʊ/", notes: "" },
+  { word: "laugh", rp: "/læf/", ga: "/læf/", notes: "" },
+  { word: "loaf", rp: "/ləʊf/", ga: "/loʊf/", notes: "" },
+  { word: "of", rp: "/ɒv, əv/", ga: "/ɑːv, əv/", notes: "Weak form word" },
+  { word: "off", rp: "/ɒf/", ga: "/ɑːf/", notes: "" },
+  { word: "oven", rp: "/ˈʌvən/", ga: "/ˈʌvən/", notes: "" },
+  { word: "man", rp: "/mæn/", ga: "/mæn/", notes: "" },
+  { word: "men", rp: "/men/", ga: "/men/", notes: "" },
+  { word: "mean", rp: "/miːn/", ga: "/miːn/", notes: "" },
+  { word: "many", rp: "/ˈmeni/", ga: "/ˈmeni/", notes: "" },
+  { word: "mien", rp: "/miːn/", ga: "/miːn/", notes: "" },
+  { word: "main", rp: "/meɪn/", ga: "/meɪn/", notes: "" },
+  { word: "mine", rp: "/maɪn/", ga: "/maɪn/", notes: "" },
+  
+  { word: "worm", rp: "/wɜːm/", ga: "/wɝrm/", notes: "" },
+  { word: "warm", rp: "/wɔːm/", ga: "/wɔːrm/", notes: "" },
+  { word: "weird", rp: "/wɪəd/", ga: "/wɪrd/", notes: "" },
+  { word: "wear", rp: "/weə/", ga: "/wer/", notes: "" },
+  { word: "were", rp: "/wɜː, wə/", ga: "/wɝːr, wɚ/", notes: "Weak form word" },
+  
+  { word: "isle", rp: "/aɪl/", ga: "/aɪl/", notes: "" },
+  { word: "ale", rp: "/eɪl/", ga: "/eɪl/", notes: "" },
+  { word: "aisle", rp: "/aɪl/", ga: "/aɪl/", notes: "" },
+  { word: "oil", rp: "/ɔɪl/", ga: "/ɔɪl/", notes: "" },
+  { word: "eel", rp: "/iːl/", ga: "/iːl/", notes: "" },
+  { word: "all", rp: "/ɔːl/", ga: "/ɔːl, ɑːl/", notes: "" },
+  
+  { word: "swallow", rp: "/ˈswɒləʊ/", ga: "/ˈswɑloʊ/", notes: "" },
+  { word: "follow", rp: "/ˈfɒləʊ/", ga: "/ˈfɑːloʊ/", notes: "" },
+  { word: "shallow", rp: "/ˈʃæl.əʊ/", ga: "/ˈʃæloʊ/", notes: "" },
+  { word: "fellow", rp: "/ˈfeləʊ/", ga: "/ˈfeloʊ/", notes: "" },
+  { word: "sorrow", rp: "/ˈsɒrəʊ/", ga: "/ˈsɑːroʊ/", notes: "" },
+  
+  { word: "gone", rp: "/gɒn/", ga: "/ɡɔn/", notes: "" },
+  { word: "done", rp: "/dʌn/", ga: "/dʌn/", notes: "" },
+  { word: "phone", rp: "/fəʊn/", ga: "/foʊn/", notes: "" },
+  { word: "ant", rp: "/ænt/", ga: "/ænt/", notes: "" },
+  { word: "aunt", rp: "/ɑːnt/", ga: "/ænt/", notes: "" },
+  { word: "haunt", rp: "/hɔːnt/", ga: "/hɑːnt/", notes: "" },
+  
+  { word: "thorough", rp: "/ˈθʌrə/", ga: "/ˈθɝːroʊ, ˈθɝːrə/", notes: "" },
+  { word: "through", rp: "/θruː/", ga: "/θruː/", notes: "" },
+  { word: "though", rp: "/ðəʊ/", ga: "/ðoʊ/", notes: "" },
+  { word: "thought", rp: "/θɔːt/", ga: "/θɑːt, θɔːt/", notes: "" },
+  
+  { word: "salmon", rp: "/ˈsæmən/", ga: "/ˈsæmən/", notes: "" },
+  { word: "calm", rp: "/kɑːm/", ga: "/kɑːm/", notes: "" },
+  { word: "summon", rp: "/ˈsʌmən/", ga: "/ˈsʌmən/", notes: "" },
+  { word: "common", rp: "/ˈkɒmən/", ga: "/ˈkɑmən/", notes: "" },
+  
+  { word: "Alice", rp: "/ˈælɪs/", ga: "/ˈælɪs/", notes: "" },
+  { word: "beginning", rp: "/bɪˈgɪnɪŋ/", ga: "/bɪˈɡɪnɪŋ/", notes: "" },
+  { word: "get", rp: "/ɡet/", ga: "/ɡet/", notes: "" },
+  { word: "very", rp: "/ˈveri/", ga: "/ˈveri/", notes: "" },
+  { word: "tired", rp: "/ˈtaɪəd/", ga: "/ˈtaɪɚd/", notes: "" },
+  { word: "sitting", rp: "/ˈsɪtɪŋ/", ga: "/ˈsɪt̬ɪŋ/", notes: "" },
+  { word: "by", rp: "/baɪ/", ga: "/baɪ/", notes: "" },
+  { word: "her", rp: "/hɜː, hə/", ga: "/hɝː, hɚ/", notes: "Weak form word" },
+  { word: "sister", rp: "/ˈsɪstə/", ga: "/ˈsɪstɚ/", notes: "" },
+  { word: "on", rp: "/ɒn/", ga: "/ɑːn/", notes: "" },
+  { word: "the", rp: "/ðə/", ga: "/ðə/", notes: "" },
+  { word: "bank", rp: "/bæŋk/", ga: "/bæŋk/", notes: "" },
+  { word: "and", rp: "/ænd, ənd/", ga: "/ænd, ənd/", notes: "Weak form word" },
+  { word: "having", rp: "/ˈhævɪŋ/", ga: "/ˈhævɪŋ/", notes: "" },
+  { word: "nothing", rp: "/ˈnʌθɪŋ/", ga: "/ˈnʌθɪŋ/", notes: "" },
+  { word: "to", rp: "/tuː, tu, tə/", ga: "/tuː, tu, tə/", notes: "Weak form word" },
+  { word: "do", rp: "/duː, du, də/", ga: "/duː, du, də/", notes: "Weak form word" },
+];
 
-```{r}
-1 + 1
+// Helper function to create table rows
+function createTableRow(entry) {
+  return `
+    <tr>
+      <td>${entry.word}</td>
+      <td>${entry.rp}</td>
+      <td>${entry.ga}</td>
+      <td>${entry.notes}</td>
+    </tr>
+  `;
+}
+
+// Function to render the dictionary
+function renderDictionary() {
+  const table = `
+    <table>
+      <thead>
+        <tr>
+          <th>Word</th>
+          <th>RP</th>
+          <th>GA</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${dictionary.map(entry => createTableRow(entry)).join('')}
+      </tbody>
+    </table>
+  `;
+  document.getElementById('fullDictionary').innerHTML = table;
+}
+
+
+// Search functionality
+document.getElementById('searchInput').addEventListener('input', function(e) {
+  const searchTerm = e.target.value.toLowerCase();
+  if (searchTerm === '') {
+    document.getElementById('searchResults').innerHTML = '';
+    return;
+  }
+  
+  const results = dictionary.filter(entry => 
+    entry.word.toLowerCase().includes(searchTerm)
+  );
+  
+  if (results.length > 0) {
+    const table = `
+      <table>
+  <thead>
+    <tr>
+      <th>Word</th>
+      <th>RP</th>
+      <th>GA</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    ${results.map(entry => createTableRow(entry)).join('')}
+  </tbody>
+</table>
+    `;
+    document.getElementById('searchResults').innerHTML = table;
+  } else {
+    document.getElementById('searchResults').innerHTML = '<p>No matches found</p>';
+  }
+});
+
+// Initial render
+renderDictionary();
+</script>
 ```
