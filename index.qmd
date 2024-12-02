@@ -121,7 +121,7 @@ const dictionary = [
   { word: "to", rp: "/tuː, tu, tə/", ga: "/tuː, tu, tə/", notes: "Weak-form word" },
   { word: "do", rp: "/duː, du, də/", ga: "/duː, du, də/", notes: "Weak-form word" },
   
-  // grinch part I
+  // Grinch part I
   { word: "every", rp: "/ˈevri/", ga: "/ˈevri/", notes: "" },
   { word: "who", rp: "/huː, hu/", ga: "/huː, hu/", notes: "Weak-form word" },
   { word: "down", rp: "/daʊn/", ga: "/daʊn/", notes: "" },
@@ -153,7 +153,7 @@ const dictionary = [
   { word: "knows", rp: "/nəʊz/", ga: "/noʊz/", notes: "Allomorphy" },
   { word: "reason", rp: "/ˈriːz(ə)n/", ga: "/ˈriːz(ə)n/", notes: "" },
   
-  // grinch part II
+  // Grinch part II
   
   { word: "hadn't", rp: "/hædnt/", ga: "/hædnt/", notes: "" },
   { word: "stopped", rp: "/stɒpt/", ga: "/stɑːpt/", notes: "Allomorphy" },
@@ -176,7 +176,51 @@ const dictionary = [
   { word: "how", rp: "/haʊ/", ga: "/haʊ/", notes: "" },
   { word: "could", rp: "/kʊd/", ga: "/kʊd/", notes: "" },
   { word: "be", rp: "/biː, bi/", ga: "/biː, bi/", notes: "Weak form word" },
-  { word: "so", rp: "/səʊ/", ga: "/soʊ/", notes: "" }
+  { word: "so", rp: "/səʊ/", ga: "/soʊ/", notes: "" },
+  
+  // Achievement test I
+  { word: "merry", rp: "/ˈmeri/", ga: "/ˈmeri/", notes: "" },
+  { word: "out", rp: "/aʊt/", ga: "/aʊt/", notes: "" },
+  { word: "upon", rp: "/əˈpɒn/", ga: "/əˈpɑːn/", notes: "" },
+  { word: "what", rp: "/wɒt/", ga: "/wɑːt, wʌt/", notes: "" },
+  { word: "time", rp: "/taɪm/", ga: "/taɪm/", notes: "" },
+  { word: "you", rp: "/juː, ju, jə/", ga: "/juː, ju, jə/", notes: "Weak form word" },
+  { word: "paying", rp: "/ˈpeɪɪŋ/", ga: "/ˈpeɪɪŋ/", notes: "" },
+  { word: "bills", rp: "/bɪlz/", ga: "/bɪlz/", notes: "Allomorphy" },
+  { word: "without", rp: "/wɪˈðaʊt/", ga: "/wɪˈðaʊt/", notes: "" },
+  { word: "money", rp: "/ˈmʌni/", ga: "/ˈmʌni/", notes: "" },
+  { word: "finding", rp: "/ˈfaɪndɪŋ/", ga: "/ˈfaɪndɪŋ/", notes: "" },
+  { word: "yourself", rp: "/jɔːˈself, jʊəˈself, jəˈself/", ga: "/jɔːrˈself, jʊrˈself,, jɚˈself/", notes: "Weak form word" },
+  { word: "year", rp: "/jɪə/", ga: "/jɪr/", notes: "" },
+  { word: "older", rp: "/ˈəʊldə/", ga: "/ˈoʊldɚ/", notes: "" },
+  { word: "not", rp: "/nɒt/", ga: "/nɑːt/", notes: "" },
+  { word: "hour", rp: "/ˈaʊə/", ga: "/ˈaʊɚ, aʊr/", notes: "" },
+  { word: "richer", rp: "/ˈrɪtʃə/", ga: "/ˈrɪtʃɚ/", notes: "" },
+  
+  // Strong and weak forms
+  { word: "a", rp: "/ə/", ga: "/ə/", notes: "" },
+  { word: "person", rp: "/ˈpɜːs(ə)n/", ga: "/ˈpɝːs(ə)n/", notes: "" },
+  { word: "has", rp: "/hæz, həz/", ga: "/hæz, həz/", notes: "Weak form word" },
+  { word: "not", rp: "/nɒt/", ga: "/nɑːt/", notes: "" },
+  { word: "studied", rp: "/ˈstʌdid/", ga: "/ˈstʌdid/", notes: "" },
+  { word: "German", rp: "/ˈdʒɜːmən/", ga: "/ˈdʒɝːmən/", notes: "" },
+  { word: "can", rp: "/kæn, kən/", ga: "/kæn, kən/", notes: "Weak form word" },
+  { word: "form", rp: "/fɔːm/", ga: "/fɔːrm/", notes: "" },
+  { word: "no", rp: "/nəʊ/", ga: "/noʊ/", notes: "" },
+  { word: "idea", rp: "/aɪˈdɪə/", ga: "/aɪˈdiːə/", notes: "" },
+  { word: "perplexing", rp: "/pəˈpleksɪŋ/", ga: "/pɚˈpleksɪŋ/", notes: "" },
+  { word: "language", rp: "/ˈlæŋɡwɪdʒ/", ga: "/ˈlæŋɡwɪdʒ/", notes: "" },
+  { word: "is", rp: "/ɪz/", ga: "/ɪz/", notes: "" },
+  { word: "surely", rp: "/ˈʃɔːli/", ga: "/ˈʃʊrli/", notes: "" },
+  { word: "there", rp: "/ðeə/", ga: "/ðer/", notes: "" },
+  { word: "another", rp: "/əˈnʌðə/", ga: "/əˈnʌðɚ/", notes: "" },
+  { word: "that (conj.)", rp: "/ðət/", ga: "/ðət/", notes: "" },
+  { word: "so", rp: "/səʊ/", ga: "/soʊ/", notes: "" },
+  { word: "slipshod", rp: "/ˈslɪpʃɒd/", ga: "/ˈslɪpʃɑːd/", notes: "" },
+  { word: "systemless", rp: "/ˈsɪstəmləs/", ga: "/ˈsɪstəmləs/", notes: "" },
+  { word: "slippery", rp: "/ˈslɪpəri/", ga: "/ˈslɪpɚi/", notes: "" },
+  { word: "elusive", rp: "/ɪˈluːsɪv/", ga: "/iˈluːsɪv/", notes: "" },
+  { word: "grasp", rp: "/ɡrɑːsp/", ga: "/ɡræsp/", notes: "" }
 
 ];
 
